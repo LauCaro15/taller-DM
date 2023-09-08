@@ -3,6 +3,7 @@ const app = require('./app')
 const {DB_HOST, USERNAME, PASSWORD , HOST, PORT, API_PATH} = require('./variables')
 
 const connection_string = `mongodb+srv://${USERNAME}:${PASSWORD}@${DB_HOST}/`
+console.log(`http://${HOST}:${PORT}/${API_PATH}`);
 
 mongoose
     .connect(connection_string, {
