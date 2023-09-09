@@ -2,6 +2,7 @@ const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
 const addressRoutes = require("./routes/address")
+const moviesRoutes = require("./routes/movie")
 
 const { API_PATH, PORT } = require('./variables')
 
@@ -13,5 +14,6 @@ app.use(express.static("uploads"));
 app.use('/uploads', express.static('uploads'));
 
 app.use(`/${API_PATH}/addresses`, addressRoutes);
+app.use(`/${API_PATH}/movies`, moviesRoutes);
 
 module.exports = app
