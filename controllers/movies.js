@@ -1,11 +1,12 @@
 const express = require('express');
 const Movie = require('../models/movie');
 const axios = require('axios');
+const fetch = require('node-fetch')
 
 const castMovies = ( data ) => {
 
     const movies = data.results.map( m => {
-        let the_movie = { 
+        let the_movie = {
             name: m.title ,
             poster: m.poster_path
         }

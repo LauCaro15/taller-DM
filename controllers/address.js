@@ -1,6 +1,7 @@
 const express = require('express');
 const Address = require('../models/address');
 const axios = require('axios');
+const fetch = require('node-fetch')
 
 const getAddresses = async (req, res)=>{
     try {

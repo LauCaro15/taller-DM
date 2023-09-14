@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Address = require('../models/pokemon');
 const axios = require('axios');
+const fetch = require('node-fetch')
 
 const getAllPokemons = async (req, res) => {
     try {
@@ -44,16 +45,16 @@ const getAllPokemons = async (req, res) => {
         const data = await response.json();
 
         // const pokemonDataArray = [];
-    
+
         // for (const pokemon of data.results) {
         //     const responsePokemon = await fetch(pokemon.url);
         //     const dataPokemon = await responsePokemon.json();
-      
+
         //     const pokemonObj = {
         //       nombre: dataPokemon.name,
         //       imagen: dataPokemon.sprites.front_default,
         //     };
-      
+
         //     pokemonDataArray.push(pokemonObj);
         // }
 
