@@ -5,16 +5,16 @@ const fetch = require('node-fetch')
 
 const castMovies = ( data ) => {
 
+    const url = "https://image.tmdb.org/t/p/original" ;
     const movies = data.results.map( m => {
         let the_movie = {
             name: m.title ,
-            poster: m.poster_path
+            poster: url + m.poster_path
         }
-        if ( !the_movie.poster || the_movie.poster==null ) {
-            return null
-        } else {
-            return the_movie
-        }
+        /* if ( !the_movie.poster || the_movie.poster==null || the_movie.poster=="https://image.tmdb.org/t/p/originalnull" ) {
+            return null ;
+        } */
+        return the_movie
     });
 
     return movies
@@ -34,7 +34,7 @@ const getMovies = async (req, res)=>{
 
 const getMoviesCast = async (req, res)=>{
     try {
-        const url = "https://api.themoviedb.org/3/discover/movie?api_key=947b8817157363ba9360dc22c51c2450"
+        const url = "https://api.themoviedb.org/3/discover/movie?api_key=947b8817157363ba9360dc22c51c2450&page=500"
         const response = await fetch(url);
         const data = castMovies( await response.json() );
         res.status(200).json(data)
