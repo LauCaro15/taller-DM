@@ -3,10 +3,10 @@ const mongoose = require('mongoose')
 
 const postShema = mongoose.Schema({
     title: { type: String, require: true },
-    subtitle: { type: String, require: true },
-    active: { type: Boolean, default: true },
-    avatar: { type: String, require: true },
+    subtitle: { type: String, require: true }, 
     description: { type: String, require: true },
+    avatar: { type: String, require: true },
+    active: { type: Boolean, default: true },
 })
 
 module.exports = mongoose.model("Post", postShema);

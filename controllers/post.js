@@ -4,12 +4,24 @@ const Post = require('../models/post');
 
 const createPost = async (req, res) => {
     try {
+
         /* const {...posts} = req.body; */
-        const postData = req.body;
+        const { title, subtitle, description } = req.body;
+        const { path } = req.file;
+
+        const newPath = path.replace(/\\/g, "/");
+        
+        const postData = {
+            title,
+            subtitle,
+            description,
+            avatar: newPath,
+        }
+
         const newPost = new Post(postData);
         const savedPost = await newPost.save();
+
         console.log(savedPost);
-        // console.log(newPost);
         res.status(201).json({ message: "Post created successfully" });
     } catch (error) {
         res.status(500).json({ message: error.message });
