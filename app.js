@@ -9,6 +9,7 @@ const addressRoutes = require("./routes/address")
 const pokemonRoutes = require("./routes/pokemon")
 const moviesRoutes = require("./routes/movie")
 const postRoutes = require("./routes/post")
+const userRoutes = require("./routes/user")
 
 /* const { API_PATH, PORT } = require('./variables') */
 
@@ -20,6 +21,7 @@ app.use(cors());
 app.use(express.static("uploads"));
 app.use('/uploads', express.static('uploads'));
 
+app.use(`/${process.env.API_PATH}/users`, userRoutes);
 app.use(`/${process.env.API_PATH}/addresses`, addressRoutes);
 app.use(`/${process.env.API_PATH}/pokemons`, pokemonRoutes);
 app.use(`/${process.env.API_PATH}/movies`, moviesRoutes);
