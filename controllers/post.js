@@ -1,21 +1,26 @@
 const { express } = require('express');
-
 const Post = require('../models/post');
 
 const createPost = async (req, res) => {
     try {
-
-        /* const {...posts} = req.body; */
         const { title, subtitle, description } = req.body;
-        const { path } = req.file;
+        const avatarPaths = [];
 
-        const newPath = path.replace(/\\/g, "/");
-        
+        // Verifica si req.files es un arreglo antes de usar map
+        if (Array.isArray(req.files)) {
+            req.files.forEach(file => {
+                avatarPaths.push(file.path.replace(/\\/g, "/"));
+            });
+        } else {
+            // Si solo hay una imagen, asegúrate de que sea un arreglo
+            avatarPaths.push(req.files.path.replace(/\\/g, "/"));
+        }
+
         const postData = {
             title,
             subtitle,
             description,
-            avatar: newPath,
+            avatar: avatarPaths, // Guardamos las rutas de las imágenes en un arreglo
         }
 
         const newPost = new Post(postData);
@@ -58,9 +63,9 @@ const removePost = async (req, res) => {
     }
 }
 
-module.exports = { 
+module.exports = {
     createPost,
-    getAllPosts, 
+    getAllPosts,
     getPost,
     removePost,
 }
